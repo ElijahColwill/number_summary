@@ -14,8 +14,27 @@ def median(array)
 	return (sorted[sorted.length / 2] + sorted[(sorted.length / 2) - 1]) / 2.0 
 end
 
+def standard_deviation(array)
+	sum = 0.0
+	array.each do |num|
+		sum += num
+	end
+	mean = sum / array.length
+	numbers = []
+	array.each do |num2|
+		numbers.push((num2 - mean) * (num2 - mean))
+	end	
+	sum2 = 0.0
+	numbers.each do |num3|
+		sum2 += num3
+	end
+	return Math.sqrt(sum2 / numbers.length)	
+end
+
+puts standard_deviation([6, 2, 3, 1])
+
 def mode(array)
-	most_num = [array[0]]
+	most_num = []
 	numbers = []
 	counter = []
 	array.each_with_index do |num, i|
@@ -38,12 +57,6 @@ def mode(array)
 			max = num
 		end
 	end
-	puts max
-	puts "--"
-	puts counter
-	puts "--"
-	puts numbers
-	puts "--"
 	counter.each_with_index do |num, i|
 		if most_num.length > 0
 			if numbers[i] != most_num[i]
@@ -59,5 +72,3 @@ def mode(array)
 	end
 	return most_num
 end
-
-puts mode([1, 2, 2, 2, 3, 3, 4, 1])
